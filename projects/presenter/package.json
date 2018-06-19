@@ -1,6 +1,6 @@
 {
 	"name": "ng-presenter",
-	"version": "0.0.1",
+	"version": "0.0.3",
 	"description": "Angular library for Creating presentations on web.",
 	"keywords": [
 		"presentation",

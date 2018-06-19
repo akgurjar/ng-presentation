@@ -8,7 +8,7 @@ npm install ng-presenter or yarn add ng-presenter
 ## How to use
 ### => Import module
 ```typescript
-import { PresenterModule } from 'presenter';
+import { PresenterModule } from 'ng-presenter';
 @NgModule({
     ......
     imports: [ PresenterModule ]
@@ -31,7 +31,7 @@ import { PresenterModule } from 'presenter';
 ```
 ### => Opening a dialog box
 ```typescript
-import { PrDialog, PrDialogRef } from 'presenter';
+import { PrDialog, PrDialogRef } from 'ng-presenter';
 import { DialogComponent } from './dialog/dialog.component';
 @Component({
     ......
