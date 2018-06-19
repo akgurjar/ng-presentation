@@ -125,6 +125,46 @@
           }
         }
       }
+    },
+    "presenter": {
+      "root": "projects/presenter",
+      "sourceRoot": "projects/presenter/src",
+      "projectType": "library",
+      "prefix": "pr",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/presenter/tsconfig.lib.json",
+            "project": "projects/presenter/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/presenter/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/presenter/src/test.ts",
+            "tsConfig": "projects/presenter/tsconfig.spec.json",
+            "karmaConfig": "projects/presenter/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/presenter/tsconfig.lib.json",
+              "projects/presenter/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "ng-presentation"

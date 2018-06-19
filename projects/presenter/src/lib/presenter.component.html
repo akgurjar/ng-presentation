@@ -1,0 +1,34 @@
+
+<div class="presenter-wrapper" [ngClass]="{ hidden: _pages.length == 0 }">
+    <div class="presenter-header content--center">
+        <ng-template [ngIf]="icon !== null">
+            <img [src]="icon" class="presenter-icon"/>&nbsp;&nbsp;
+        </ng-template>
+        <span class="presenter-title">
+            <span>{{label}}</span>&nbsp;
+            <ng-template [ngIf]="isPageTitle">
+                <span>/</span>&nbsp;
+                <span>{{currentPage ? currentPage.label : ''}}</span>
+            </ng-template>
+        </span>
+        <div style="flex: 1"></div>
+        <div class="presenter-controls content--center">
+            <button class="presenter-control" (click)="onPreviousPage()">&lt;</button>
+            <div class="presenter-controls-separator"></div>
+            <button class="presenter-control" (click)="onNextPage()">&gt;</button>
+        </div>
+    </div>
+    <div class="presenter-page">
+        <ng-container #page></ng-container>
+        <span class="presenter-page-number">{{currentPageIndex + 1}} / {{_pages.length}}</span>
+        <div class="content--center presenter-overlay" [ngClass]="{'presenter-overlay-active': dialog.activeDialog != null}">
+            <div class="presenter-overlay-back" (click)="onOverlayClicked()"></div>
+            <div class="presenter-overlay-wrapper">
+                <ng-container #overlay></ng-container>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content--center page-not-available" [ngClass]="{ hidden: _pages.length != 0 }">
+    No Page Found for Presentation
+</div>
