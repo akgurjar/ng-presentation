@@ -1,5 +1,5 @@
 ![ScreenShot](https://raw.githubusercontent.com/akgurjar/ng-presentation/master/src/assets/screenshot.png)
-# NG-Presentation
+# NG-Presenter
 Angular library for Creating presentations on web.
 ### Installation
 ```

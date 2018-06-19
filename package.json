@@ -1,6 +1,6 @@
 {
   "name": "ng-presentation",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -11,6 +11,12 @@
     "build-presenter": "ng build presenter --prod"
   },
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://www.github.com/akgurjar/ng-presentation.git"
+  },
+  "author": "Ashish Gurjar <akp51081@gmail.com>",
+  "license": "GPL-3.0",
   "dependencies": {
     "@angular/common": "^6.0.3",
     "@angular/core": "^6.0.3",
