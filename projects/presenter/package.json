@@ -14,7 +14,7 @@
 	"author": "Ashish Gurjar <akp51081@gmail.com>",
 	"license": "GPL-3.0",
 	"peerDependencies": {
-		"@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-		"@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+		"@angular/common": "^7.2.5",
+		"@angular/core": "^7.2.5"
 	}
 }

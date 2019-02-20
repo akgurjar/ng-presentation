@@ -2,7 +2,7 @@
 :host {
 	height: 100%;
 	width: 100%;
-	background-color: #F6F6F6;
+	background-color: #F1F1F1;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -15,7 +15,7 @@
 	width: 100%;
 	background-color: #FFF;
 	color: #666;
-	box-shadow: 0px 0px 3px rgba(#000, .2);
+	box-shadow: 0 2px 1px -1px rgba(#000,.2), 0 1px 1px 0 rgba(#000,.14), 0 1px 3px 0 rgba(#000,.12);
 	border-radius: 2px;
 	overflow: hidden;
 }
@@ -94,6 +94,7 @@
 	bottom: 5px;
 	right: 5px;
 	user-select: none;
+	font-size: 15px;
 }
 
 .presenter-overlay,
@@ -159,4 +160,13 @@
 		opacity: 0;
 		transform: scale(50);
 	}
+}
+.presenter__controls {
+	position: absolute;
+	top: 10px;
+	height: 36px;
+	width: 200px;
+	background-color: #FFF;
+	box-shadow: 0 2px 1px -1px rgba(#000,.2), 0 1px 1px 0 rgba(#000,.14), 0 1px 3px 0 rgba(#000,.12);
+	border-radius: 2px;
 }
