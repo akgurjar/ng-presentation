@@ -7,6 +7,7 @@
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+	outline: none;
 }
 .presenter-wrapper {
 	max-height: 500px;
@@ -18,6 +19,7 @@
 	box-shadow: 0 2px 1px -1px rgba(#000,.2), 0 1px 1px 0 rgba(#000,.14), 0 1px 3px 0 rgba(#000,.12);
 	border-radius: 2px;
 	overflow: hidden;
+	transition: all .1s ease-in-out;
 }
 .presenter-header {
 	height: 40px;
@@ -163,10 +165,23 @@
 }
 .presenter__controls {
 	position: absolute;
-	top: 10px;
-	height: 36px;
-	width: 200px;
+	display: inline-flex;
+	align-items: center;
+	top: -50px;
+	padding: 0 2px;
+	// width: 200px;
 	background-color: #FFF;
 	box-shadow: 0 2px 1px -1px rgba(#000,.2), 0 1px 1px 0 rgba(#000,.14), 0 1px 3px 0 rgba(#000,.12);
 	border-radius: 2px;
+	transition: all .1s ease-in-out;
+}
+.presenter__controls--visible {
+	top: 10px;
+}
+.controls__divider {
+	display: inline-block;
+	width: 1px;
+	height: 24px;
+	margin: 0 2px;
+	background-color: rgba(#000, .12);
 }

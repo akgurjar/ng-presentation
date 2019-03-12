@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { PrDialog } from 'projects/presenter/src/public_api';
+import { DialogComponent } from './dialog/dialog.component';
 
 @Component({
 	selector: 'app-root',
@@ -6,7 +8,10 @@ import { Component } from '@angular/core';
 	styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-	courseName = 'Angular 6';
+	courseName = 'Angular 7';
 	courseIcon = 'favicon.ico';
-	constructor() { }
+	constructor(private _dialog: PrDialog) { }
+	onDialogHandler() {
+		this._dialog.open(DialogComponent);
+	}
 }

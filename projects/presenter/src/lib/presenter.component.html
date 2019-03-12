@@ -1,5 +1,5 @@
 
-<div class="presenter-wrapper" [ngClass]="{ hidden: _pages.length == 0 }">
+<div class="presenter-wrapper" [ngStyle]="{'max-height': isFullScreenMode ? '100%' : '500px', 'max-width': isFullScreenMode ? '100%' : '920px'}" [ngClass]="{ hidden: _pages.length == 0 }">
     <div class="presenter-header content--center">
         <ng-template [ngIf]="icon !== null">
             <img [src]="icon" class="presenter-icon"/>&nbsp;&nbsp;
@@ -12,11 +12,14 @@
             </ng-template>
         </span>
         <div style="flex: 1"></div>
-        <div class="presenter-controls content--center">
+        <button mat-icon-button color="primary" [disabled]="isControlVisible" (click)="isControlVisible = true">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <!-- <div class="presenter-controls content--center">
             <button class="presenter-control" (click)="onPreviousPage()">&lt;</button>
             <div class="presenter-controls-separator"></div>
             <button class="presenter-control" (click)="onNextPage()">&gt;</button>
-        </div>
+        </div> -->
     </div>
     <div class="presenter-page">
         <ng-container #page></ng-container>
@@ -34,4 +37,22 @@
 </div>
 
 
-<div class="presenter__controls"></div>
+<div class="presenter__controls" [ngClass]="{'presenter__controls--visible' : isControlVisible}">
+    <button mat-icon-button color="primary" (click)="isFullScreenMode = !isFullScreenMode">
+        <mat-icon>{{isFullScreenMode ? 'fullscreen_exit' : 'fullscreen'}}</mat-icon>
+    </button>
+    <div class="controls__divider"></div>
+    <button mat-icon-button color="primary" [disabled]="!hasPrevPage" (click)="onPreviousPage()">
+        <mat-icon>skip_previous</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" (click)="onTogglePresentationMode()">
+        <mat-icon>desktop_windows</mat-icon>
+    </button>
+    <button mat-icon-button color="primary" [disabled]="!hasNextPage" (click)="onNextPage()">
+        <mat-icon>skip_next</mat-icon>
+    </button>
+    <div class="controls__divider"></div>
+    <button mat-icon-button color="primary" (click)="isControlVisible = false">
+        <mat-icon>close</mat-icon>
+    </button>
+</div>

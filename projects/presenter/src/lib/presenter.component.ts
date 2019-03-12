@@ -8,7 +8,7 @@ import {
 	HostBinding,
 	HostListener,
 	Input,
-	ComponentFactory
+	OnDestroy
 } from '@angular/core';
 import { PresenterPageComponent } from './presenter-page/presenter-page.component';
 import { PrDialog } from './dialog.service';
@@ -18,8 +18,11 @@ import { PrDialog } from './dialog.service';
 	templateUrl: './presenter.component.html',
 	styleUrls: ['./presenter.component.scss']
 })
-export class PresenterComponent implements AfterContentInit {
+export class PresenterComponent implements AfterContentInit, OnDestroy {
 	isOverlay = true;
+	isControlVisible = true;
+	isFullScreenMode = false;
+	isPresentationMode = false;
 	currentPage: PresenterPageComponent = null;
 	currentPageTitle = null;
 	currentPageIndex = 0;
@@ -39,8 +42,17 @@ export class PresenterComponent implements AfterContentInit {
 	@ViewChild('overlay', { read: ViewContainerRef }) _overlay: ViewContainerRef;
 
 	@ContentChildren(PresenterPageComponent) _pages: QueryList<PresenterPageComponent>;
+	get hasNextPage(): boolean {
+		return this.currentPage !== this._pages.last;
+	}
+	get hasPrevPage(): boolean {
+		return this.currentPage !== this._pages.first;
+	}
 	_pagesArray: PresenterPageComponent[] = null;
-	constructor(public dialog: PrDialog) { }
+	fullScreenHandler = this.onFullScreenChangeHandler.bind(this);
+	constructor(public dialog: PrDialog) {
+		document.addEventListener('fullscreenchange', this.fullScreenHandler);
+	}
 
 	ngAfterContentInit () {
 		this.dialog._setContainer(this._overlay);
@@ -66,20 +78,14 @@ export class PresenterComponent implements AfterContentInit {
 		}
 	}
 
-	@HostListener('keypress', ['$event'])
+	@HostListener('keydown', ['$event'])
 	onKeyPress(event: KeyboardEvent) {
-
 		const target: HTMLElement = event.target as HTMLElement;
-
 		if (target.getAttribute('data-target') === 'pce') { // page change event
-			if (event.keyCode === 37) {
-
+			if (event.key === 'ArrowLeft') {
 				this.onPreviousPage();
-
-			} else if (event.keyCode === 39) {
-
+			} else if (event.key === 'ArrowRight') {
 				this.onNextPage();
-
 			}
 		}
 	}
@@ -93,14 +99,14 @@ export class PresenterComponent implements AfterContentInit {
 		}
 	}
 	onNextPage () {
-		if (this.currentPage !== this._pages.last) {
+		if (this.hasNextPage) {
 			this.onChangePage(this._pagesArray[this.currentPageIndex + 1]);
 		} else {
 			console.log('It is last page already');
 		}
 	}
 	onPreviousPage () {
-		if (this.currentPage !== this._pages.first) {
+		if (this.hasPrevPage) {
 			this.onChangePage(this._pagesArray[this.currentPageIndex - 1]);
 		} else {
 			console.log('It is first page already');
@@ -110,5 +116,18 @@ export class PresenterComponent implements AfterContentInit {
 		if (this.dialog.activeDialog) {
 			this.dialog.activeDialog.close();
 		}
+	}
+	onFullScreenChangeHandler() {
+		this.isPresentationMode = !this.isPresentationMode;
+	}
+	onTogglePresentationMode() {
+		if (this.isPresentationMode) {
+			document.exitFullscreen();
+		} else {
+			document.documentElement.requestFullscreen();
+		}
+	}
+	ngOnDestroy() {
+		document.removeEventListener('fullscreenchange', this.fullScreenHandler);
 	}
 }
