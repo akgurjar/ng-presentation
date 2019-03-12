@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { PresenterModule } from 'projects/presenter/src/public_api';
+import { PresenterModule } from 'presenter';
 import { AppComponent } from './app.component';
 import { DialogComponent } from './dialog/dialog.component';
 

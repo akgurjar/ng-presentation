@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PrDialog } from 'projects/presenter/src/public_api';
+import { PrDialog } from 'presenter';
 import { DialogComponent } from './dialog/dialog.component';
 
 @Component({
